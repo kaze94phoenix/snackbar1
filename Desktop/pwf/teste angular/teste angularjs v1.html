@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+	<title>Angular</title>
+	</head>
+	
+	<!--aplicando o controlador TestController-->
+	<body ng-app="">
+	<div ng-controller= "SimpleController">
+	<input type="text" ng-model="name">
+	
+	<h2>Hello {{name}}!</h2>
+	<ul>
+	<li ng-repeat="emp in employees | filter: name">
+	Nome:{{ emp.name }} - Cidade:{{ emp.city }}
+	</li>
+	</ul>
+	</div>
+	
+	
+
+	<script src="angular.min.js"></script>
+	
+	<!-- exemplo controlador e uso do $scope -->
+	<script>
+	function SimpleController($scope){
+	$scope.employees = [
+	{name:'Celso',city:'Chibuto'},
+	{name:'Aminissa', city:'Chibuto'},
+	{name:'Frenque', city:'Maputo'}
+	];
+	}
+	</script>
+	
+        </body>
+	</html>
