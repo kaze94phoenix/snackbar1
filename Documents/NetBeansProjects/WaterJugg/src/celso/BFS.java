@@ -71,9 +71,13 @@ public class BFS<T> {
                path.add(temp);
                
            }
-           System.out.println("goal:"+temp2+" in "+lvl+" levels :^)"+"oh!! and the path is:"+path);
+           System.out.println("goal:"+temp2+" in "+lvl+" levels");
+           System.out.println("oh!! and the path is: ");
+           for(int i=path.size()-1; i>=0; i--)
+               System.out.print(path.get(i));
            path.clear();
            lvl=0;
+           System.out.println("");
         }
     }
 
