@@ -213,10 +213,5 @@ public class Manage {
         return root;
     }
     
-    public static void main(String[] args) {
-        Jug j= new Jug(4, 0, 0);
-        Jug j1= new Jug(3, 0, 0);
-        Manage m= new Manage(j, j1);
-    }
-    
+   
 }
