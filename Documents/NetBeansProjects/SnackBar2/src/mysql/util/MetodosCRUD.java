@@ -46,7 +46,6 @@ public class MetodosCRUD {
         
         session.getTransaction().commit();
         DefaultTableModel dtm = new DefaultTableModel();
-        dtm.ad
         return dtm;
     }
     
