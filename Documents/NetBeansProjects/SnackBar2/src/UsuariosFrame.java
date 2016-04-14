@@ -154,6 +154,7 @@ public class UsuariosFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         try{
         mcrud.salvarUsuario(nomeTF.getText(), usernameTF.getText(), passwordTF.getText());
+        usuariosTB.setModel(mcrud.listarUsuario());
         JOptionPane.showMessageDialog(null, "Inserido com sucesso");
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e.getMessage());

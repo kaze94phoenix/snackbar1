@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Apr 11, 2016 9:21:48 AM by Hibernate Tools 3.6.0 -->
+<!-- Generated Apr 15, 2016 12:13:03 AM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
     <class name="mysql.entity.Balconista" table="balconista" catalog="snackbar">
         <id name="id" type="java.lang.Integer">
@@ -10,6 +10,15 @@
         </id>
         <property name="nome" type="string">
             <column name="nome" not-null="true" />
+        </property>
+        <property name="dataNascimento" type="date">
+            <column name="data_nascimento" length="10" not-null="true" />
+        </property>
+        <property name="morada" type="string">
+            <column name="morada" />
+        </property>
+        <property name="nuit" type="int">
+            <column name="nuit" not-null="true" />
         </property>
         <property name="username" type="string">
             <column name="username" length="16" not-null="true" />

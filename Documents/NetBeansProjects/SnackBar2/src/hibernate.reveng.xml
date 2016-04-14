@@ -4,8 +4,8 @@
   <schema-selection match-catalog="snackbar"/>
   <table-filter match-name="item_pedido"/>
   <table-filter match-name="balconista"/>
-  <table-filter match-name="pedido"/>
-  <table-filter match-name="item"/>
-  <table-filter match-name="tipoitem"/>
   <table-filter match-name="mesa"/>
+  <table-filter match-name="tipoitem"/>
+  <table-filter match-name="item"/>
+  <table-filter match-name="pedido"/>
 </hibernate-reverse-engineering>

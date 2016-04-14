@@ -1,5 +1,5 @@
 package mysql.entity;
-// Generated Apr 11, 2016 9:21:47 AM by Hibernate Tools 3.6.0
+// Generated Apr 15, 2016 12:13:02 AM by Hibernate Tools 3.6.0
 
 
 

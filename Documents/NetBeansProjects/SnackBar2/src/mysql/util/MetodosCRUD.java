@@ -42,9 +42,9 @@ public class MetodosCRUD {
     public DefaultTableModel listarUsuario(){
         DefaultTableModel dtm = new DefaultTableModel();
         dtm.setColumnCount(3);
-         dtm.setColumnIdentifiers(new Object[] {"ID","Nome","Username"});
+         dtm.setColumnIdentifiers(new Object[] {"ID","Nome","Username","NUIT"});
          for(Balconista balconista:listas.listaBalconista())
-             dtm.addRow(new Object[]{" "+balconista.getId(),balconista.getNome(),balconista.getUsername()});
+             dtm.addRow(new Object[]{" "+balconista.getId(),balconista.getNome(),balconista.getUsername(),balconista.getNuit()});
         return dtm;
     }
     
