@@ -8,6 +8,7 @@ package mysql.util;
 
 import java.awt.List;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.table.DefaultTableModel;
 import mysql.entity.Balconista;
 import org.hibernate.Query;
@@ -27,9 +28,12 @@ public class MetodosCRUD {
         
     }
     
-    public void salvarUsuario(String name, String username, String password){
+    public void salvarUsuario(String name, String username, String password,Date dataNasc,int nuit, String morada){
         Balconista balconista = new Balconista();
         balconista.setNome(name);
+        balconista.setMorada(morada);
+        balconista.setNuit(nuit);
+        balconista.setDataNascimento(dataNasc);
         balconista.setUsername(username);
         balconista.setPassword(password);
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 13-Abr-2016 às 14:13
+-- Generation Time: 15-Abr-2016 às 00:48
 -- Versão do servidor: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -29,19 +29,13 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `balconista` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(255) NOT NULL,
+  `data_nascimento` date NOT NULL,
+  `morada` varchar(255) DEFAULT NULL,
+  `nuit` int(11) NOT NULL,
   `username` varchar(16) NOT NULL,
   `password` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
-
---
--- Extraindo dados da tabela `balconista`
---
-
-INSERT INTO `balconista` (`id`, `nome`, `username`, `password`) VALUES
-(1, 'nome', 'username', 'password'),
-(2, 'nome', 'username', 'passwordg'),
-(3, 'testenome', 'testeuser', 'testpw');
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
