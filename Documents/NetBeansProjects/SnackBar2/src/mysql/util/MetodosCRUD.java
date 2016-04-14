@@ -21,6 +21,8 @@ import org.hibernate.cfg.Configuration;
  */
 public class MetodosCRUD {
     
+    Listas listas = new Listas();
+    
     public MetodosCRUD(){
         
     }
@@ -38,14 +40,11 @@ public class MetodosCRUD {
     }
     
     public DefaultTableModel listarUsuario(){
-        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
-        Session session = sessionFactory.openSession();
-        session.beginTransaction();
-        Query query = session.createQuery("from Balconista");
-        ArrayList list = (ArrayList) query.list();
-        
-        session.getTransaction().commit();
         DefaultTableModel dtm = new DefaultTableModel();
+        dtm.setColumnCount(3);
+         dtm.setColumnIdentifiers(new Object[] {"ID","Nome","Username"});
+         for(Balconista balconista:listas.listaBalconista())
+             dtm.addRow(new Object[]{" "+balconista.getId(),balconista.getNome(),balconista.getUsername()});
         return dtm;
     }
     

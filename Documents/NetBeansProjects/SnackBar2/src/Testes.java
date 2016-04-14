@@ -25,7 +25,7 @@ public class Testes {
         session.beginTransaction();
         Query query = session.createQuery("from Balconista");
         ArrayList list = (ArrayList) query.list();
-        for(int i=0; i<list.size()-1;i++){
+        for(int i=0; i<list.size();i++){
            System.out.println(list.get(i)+"\n");
         }
     }

@@ -54,7 +54,7 @@ public class Balconista  implements java.io.Serializable {
 
 
 public String toString(){
-    return "Nome:"+nome+"\nUsername:"+username;
+    return "Nome:"+nome+"\nUsername:"+username+"\n"+password;
 }
 
 }

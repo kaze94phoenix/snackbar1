@@ -1,5 +1,13 @@
 
+import java.awt.HeadlessException;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import mysql.util.Listas;
 import mysql.util.MetodosCRUD;
 
 /*
@@ -12,13 +20,15 @@ import mysql.util.MetodosCRUD;
  *
  * @author Gaara-X
  */
-public class NewJFrame1 extends javax.swing.JFrame {
+public class UsuariosFrame extends javax.swing.JFrame {
     MetodosCRUD mcrud = new MetodosCRUD();
+    Listas listas = new Listas();
     /**
      * Creates new form NewJFrame1
      */
-    public NewJFrame1() {
+    public UsuariosFrame() {
         initComponents();
+        usuariosTB = new JTable(mcrud.listarUsuario());
     }
 
     /**
@@ -40,7 +50,7 @@ public class NewJFrame1 extends javax.swing.JFrame {
         guardarBt = new javax.swing.JButton();
         limparBt = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        usuariosTB = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -110,26 +120,8 @@ public class NewJFrame1 extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "Nome", "Username"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(jTable1);
+        usuariosTB.setModel(mcrud.listarUsuario().fireTableDataChanged());
+        jScrollPane1.setViewportView(usuariosTB);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -185,24 +177,27 @@ public class NewJFrame1 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UsuariosFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UsuariosFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UsuariosFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UsuariosFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NewJFrame1().setVisible(true);
+                new UsuariosFrame().setVisible(true);
             }
         });
     }
 
+
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton guardarBt;
     private javax.swing.JLabel jLabel1;
@@ -210,10 +205,11 @@ public class NewJFrame1 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JButton limparBt;
     private javax.swing.JTextField nomeTF;
     private javax.swing.JTextField passwordTF;
     private javax.swing.JTextField usernameTF;
+    public javax.swing.JTable usuariosTB;
     // End of variables declaration//GEN-END:variables
+
 }
