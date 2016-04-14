@@ -120,7 +120,7 @@ public class UsuariosFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        usuariosTB.setModel(mcrud.listarUsuario().fireTableDataChanged());
+        usuariosTB.setModel(mcrud.listarUsuario());
         jScrollPane1.setViewportView(usuariosTB);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
