@@ -13,6 +13,7 @@
     <mapping resource="mysql/entity/Item.hbm.xml"/>
     <mapping resource="mysql/entity/Tipoitem.hbm.xml"/>
     <mapping resource="mysql/entity/Pedido.hbm.xml"/>
+    <mapping resource="mysql/entity/Tipousuario.hbm.xml"/>
     <mapping resource="mysql/entity/Mesa.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

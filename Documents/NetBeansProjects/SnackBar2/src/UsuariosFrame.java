@@ -9,6 +9,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+import mysql.entity.Tipousuario;
 import mysql.util.Listas;
 import mysql.util.MetodosCRUD;
 
@@ -57,6 +58,8 @@ public class UsuariosFrame extends javax.swing.JFrame {
         moradaTF = new javax.swing.JTextField();
         nuitTF = new javax.swing.JTextField();
         dataNascDC = new com.toedter.calendar.JDateChooser();
+        jLabel7 = new javax.swing.JLabel();
+        usuarioTipoCB = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         usuariosTB = new javax.swing.JTable();
 
@@ -82,6 +85,11 @@ public class UsuariosFrame extends javax.swing.JFrame {
         });
 
         limparBt.setText("Limpar");
+        limparBt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                limparBtActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Data de Nascimento");
 
@@ -89,13 +97,21 @@ public class UsuariosFrame extends javax.swing.JFrame {
 
         jLabel6.setText("Morada");
 
+        jLabel7.setText("Tipo de usuario");
+
+        usuarioTipoCB.setModel(new javax.swing.DefaultComboBoxModel(listas.vectorTipoUsuario()));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 38, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(usuarioTipoCB, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(jLabel5)
@@ -157,9 +173,13 @@ public class UsuariosFrame extends javax.swing.JFrame {
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(usuarioTipoCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(guardarBt)
                     .addComponent(limparBt))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         usuariosTB.setModel(mcrud.listarUsuario());
@@ -174,7 +194,7 @@ public class UsuariosFrame extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 10, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,7 +216,7 @@ public class UsuariosFrame extends javax.swing.JFrame {
     private void guardarBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarBtActionPerformed
         // TODO add your handling code here:
         try{
-        mcrud.salvarUsuario(nomeTF.getText(), usernameTF.getText(), passwordTF.getText(),dataNascDC.getDate(),Integer.parseInt(nuitTF.getText()),moradaTF.getText());
+        mcrud.salvarUsuario(nomeTF.getText(), usernameTF.getText(), passwordTF.getText(),dataNascDC.getDate(),Integer.parseInt(nuitTF.getText()),moradaTF.getText(),(Tipousuario)usuarioTipoCB.getSelectedItem());
         
         usuariosTB.setModel(mcrud.listarUsuario());
         //usuariosTB.getModel().addTableModelListener(usuariosTB);
@@ -207,6 +227,10 @@ public class UsuariosFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }//GEN-LAST:event_guardarBtActionPerformed
+
+    private void limparBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limparBtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_limparBtActionPerformed
 
     /**
      * @param args the command line arguments
@@ -255,6 +279,7 @@ public class UsuariosFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton limparBt;
@@ -263,6 +288,7 @@ public class UsuariosFrame extends javax.swing.JFrame {
     private javax.swing.JTextField nuitTF;
     private javax.swing.JTextField passwordTF;
     private javax.swing.JTextField usernameTF;
+    private javax.swing.JComboBox usuarioTipoCB;
     public javax.swing.JTable usuariosTB;
     // End of variables declaration//GEN-END:variables
 

@@ -1,13 +1,16 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Apr 15, 2016 12:13:03 AM by Hibernate Tools 3.6.0 -->
+<!-- Generated Apr 26, 2016 2:12:36 PM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
     <class name="mysql.entity.Balconista" table="balconista" catalog="snackbar">
         <id name="id" type="java.lang.Integer">
             <column name="id" />
             <generator class="identity" />
         </id>
+        <many-to-one name="tipousuario" class="mysql.entity.Tipousuario" fetch="select">
+            <column name="tipousuario_id" not-null="true" />
+        </many-to-one>
         <property name="nome" type="string">
             <column name="nome" not-null="true" />
         </property>
@@ -26,5 +29,11 @@
         <property name="password" type="string">
             <column name="password" not-null="true" />
         </property>
+        <set name="pedidos" table="pedido" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="balconista_id" not-null="true" />
+            </key>
+            <one-to-many class="mysql.entity.Pedido" />
+        </set>
     </class>
 </hibernate-mapping>

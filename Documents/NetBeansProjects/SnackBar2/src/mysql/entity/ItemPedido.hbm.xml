@@ -1,19 +1,19 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Apr 15, 2016 12:13:03 AM by Hibernate Tools 3.6.0 -->
+<!-- Generated Apr 26, 2016 2:12:36 PM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
     <class name="mysql.entity.ItemPedido" table="item_pedido" catalog="snackbar">
         <id name="id" type="java.lang.Integer">
             <column name="id" />
             <generator class="identity" />
         </id>
-        <property name="itemId" type="int">
+        <many-to-one name="item" class="mysql.entity.Item" fetch="select">
             <column name="item_id" not-null="true" />
-        </property>
-        <property name="pedidoId" type="int">
+        </many-to-one>
+        <many-to-one name="pedido" class="mysql.entity.Pedido" fetch="select">
             <column name="pedido_id" not-null="true" />
-        </property>
+        </many-to-one>
         <property name="data" type="timestamp">
             <column name="data" length="19" not-null="true" />
         </property>

@@ -3,19 +3,19 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated Apr 26, 2016 2:12:36 PM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
-    <class name="mysql.entity.Tipoitem" table="tipoitem" catalog="snackbar">
+    <class name="mysql.entity.Tipousuario" table="tipousuario" catalog="snackbar">
         <id name="id" type="java.lang.Integer">
             <column name="id" />
             <generator class="identity" />
         </id>
-        <property name="nome" type="string">
-            <column name="nome" not-null="true" />
+        <property name="designacao" type="string">
+            <column name="designacao" not-null="true" />
         </property>
-        <set name="items" table="item" inverse="true" lazy="true" fetch="select">
+        <set name="balconistas" table="balconista" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="tipoitem_id" not-null="true" />
+                <column name="tipousuario_id" not-null="true" />
             </key>
-            <one-to-many class="mysql.entity.Item" />
+            <one-to-many class="mysql.entity.Balconista" />
         </set>
     </class>
 </hibernate-mapping>

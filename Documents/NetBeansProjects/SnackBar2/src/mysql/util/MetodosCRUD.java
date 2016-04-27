@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.table.DefaultTableModel;
 import mysql.entity.Balconista;
+import mysql.entity.Item;
+import mysql.entity.Tipoitem;
+import mysql.entity.Tipousuario;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -28,7 +31,7 @@ public class MetodosCRUD {
         
     }
     
-    public void salvarUsuario(String name, String username, String password,Date dataNasc,int nuit, String morada){
+    public void salvarUsuario(String name, String username, String password,Date dataNasc,int nuit, String morada, Tipousuario tipoUsuario){
         Balconista balconista = new Balconista();
         balconista.setNome(name);
         balconista.setMorada(morada);
@@ -36,6 +39,7 @@ public class MetodosCRUD {
         balconista.setDataNascimento(dataNasc);
         balconista.setUsername(username);
         balconista.setPassword(password);
+        balconista.setTipousuario(tipoUsuario);
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();
         session.beginTransaction();
@@ -49,6 +53,26 @@ public class MetodosCRUD {
          for(Balconista balconista:listas.listaBalconista())
              dtm.addRow(new Object[]{" "+balconista.getId(),balconista.getNome(),balconista.getUsername(),balconista.getNuit()});
         return dtm;
+    }
+    
+    public DefaultTableModel listarItens(){
+        DefaultTableModel dtm = new DefaultTableModel();
+         dtm.setColumnIdentifiers(new Object[] {"ID","Nome","Preco","Tipo"});
+         for(Item item:listas.listaItem())
+             dtm.addRow(new Object[]{" "+item.getId(),item.getNome(),item.getPreco(),item.getTipoitem()});
+        return dtm;
+    }
+    
+    public void salvarItem(String name,double preco,Tipoitem tipoItem){
+        Item item = new Item();
+        item.setNome(name);
+        item.setPreco(preco);
+        item.setTipoitem(tipoItem);
+        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        session.save(item);
+        session.getTransaction().commit();
     }
     
 }
