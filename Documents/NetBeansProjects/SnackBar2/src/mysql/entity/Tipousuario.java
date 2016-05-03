@@ -1,5 +1,5 @@
 package mysql.entity;
-// Generated Apr 26, 2016 2:12:35 PM by Hibernate Tools 3.6.0
+// Generated May 3, 2016 11:41:31 AM by Hibernate Tools 3.6.0
 
 
 import java.util.HashSet;
@@ -49,9 +49,7 @@ public class Tipousuario  implements java.io.Serializable {
         this.balconistas = balconistas;
     }
 
-    public String toString(){
-        return designacao;
-    }
+
 
 
 }

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 27-Abr-2016 às 15:18
+-- Generation Time: 03-Maio-2016 às 11:39
 -- Versão do servidor: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -72,6 +72,7 @@ INSERT INTO `item` (`id`, `nome`, `preco`, `tipoitem_id`) VALUES
 CREATE TABLE IF NOT EXISTS `item_pedido` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `item_id` int(11) NOT NULL,
+  `qtd` int(255) NOT NULL,
   `pedido_id` int(11) NOT NULL,
   `data` datetime NOT NULL,
   PRIMARY KEY (`id`),

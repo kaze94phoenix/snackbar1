@@ -1,5 +1,5 @@
 package mysql.entity;
-// Generated Apr 26, 2016 2:12:35 PM by Hibernate Tools 3.6.0
+// Generated May 3, 2016 11:41:31 AM by Hibernate Tools 3.6.0
 
 
 import java.util.Date;
@@ -13,14 +13,16 @@ public class ItemPedido  implements java.io.Serializable {
      private Integer id;
      private Item item;
      private Pedido pedido;
+     private int qtd;
      private Date data;
 
     public ItemPedido() {
     }
 
-    public ItemPedido(Item item, Pedido pedido, Date data) {
+    public ItemPedido(Item item, Pedido pedido, int qtd, Date data) {
        this.item = item;
        this.pedido = pedido;
+       this.qtd = qtd;
        this.data = data;
     }
    
@@ -44,6 +46,13 @@ public class ItemPedido  implements java.io.Serializable {
     
     public void setPedido(Pedido pedido) {
         this.pedido = pedido;
+    }
+    public int getQtd() {
+        return this.qtd;
+    }
+    
+    public void setQtd(int qtd) {
+        this.qtd = qtd;
     }
     public Date getData() {
         return this.data;
