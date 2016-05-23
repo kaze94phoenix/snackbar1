@@ -48,7 +48,10 @@ public class Tipoitem  implements java.io.Serializable {
     public void setItems(Set items) {
         this.items = items;
     }
-
+    
+    public String toString(){
+        return nome;
+    }
 
 
 

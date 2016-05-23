@@ -59,7 +59,9 @@ public class Mesa  implements java.io.Serializable {
         this.pedidos = pedidos;
     }
 
-
+    public String toString(){
+        return "Mesa "+numero;
+    }
 
 
 }

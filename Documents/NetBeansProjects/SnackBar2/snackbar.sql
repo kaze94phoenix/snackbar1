@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 03-Maio-2016 às 11:39
+-- Generation Time: 23-Maio-2016 às 18:56
 -- Versão do servidor: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -38,7 +38,14 @@ CREATE TABLE IF NOT EXISTS `balconista` (
   PRIMARY KEY (`id`),
   KEY `tipouruario_id` (`tipousuario_id`),
   KEY `tipouruario_id_2` (`tipousuario_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Extraindo dados da tabela `balconista`
+--
+
+INSERT INTO `balconista` (`id`, `nome`, `data_nascimento`, `morada`, `nuit`, `username`, `password`, `tipousuario_id`) VALUES
+(1, 'Celso', '2016-05-05', 'MAgoanine', 554646, 'user1', 'password1', 1);
 
 -- --------------------------------------------------------
 
@@ -78,7 +85,15 @@ CREATE TABLE IF NOT EXISTS `item_pedido` (
   PRIMARY KEY (`id`),
   KEY `item_id` (`item_id`,`pedido_id`),
   KEY `pedido_id` (`pedido_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Extraindo dados da tabela `item_pedido`
+--
+
+INSERT INTO `item_pedido` (`id`, `item_id`, `qtd`, `pedido_id`, `data`) VALUES
+(1, 1, 4, 2, '2016-05-23 18:02:04'),
+(2, 1, 9, 2, '2016-05-23 18:02:07');
 
 -- --------------------------------------------------------
 
@@ -119,7 +134,15 @@ CREATE TABLE IF NOT EXISTS `pedido` (
   KEY `balconista` (`balconista_id`,`mesa_id`),
   KEY `balconista_id` (`balconista_id`),
   KEY `mesa_id` (`mesa_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Extraindo dados da tabela `pedido`
+--
+
+INSERT INTO `pedido` (`id`, `balconista_id`, `mesa_id`, `pago`, `data`) VALUES
+(1, 1, 1, 0, '2016-05-23 17:57:41'),
+(2, 1, 1, 0, '2016-05-23 18:02:08');
 
 -- --------------------------------------------------------
 

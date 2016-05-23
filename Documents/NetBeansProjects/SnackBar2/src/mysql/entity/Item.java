@@ -69,7 +69,9 @@ public class Item  implements java.io.Serializable {
         this.itemPedidos = itemPedidos;
     }
 
-
+    public String toString(){
+        return nome;
+    }
 
 
 }

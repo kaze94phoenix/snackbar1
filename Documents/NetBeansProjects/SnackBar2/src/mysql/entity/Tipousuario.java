@@ -49,7 +49,9 @@ public class Tipousuario  implements java.io.Serializable {
         this.balconistas = balconistas;
     }
 
-
+    public String toString(){
+        return designacao;
+    }
 
 
 }

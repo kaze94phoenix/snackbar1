@@ -29,6 +29,13 @@ public class Pedido  implements java.io.Serializable {
         this.pago = pago;
         this.data = data;
     }
+    
+     public Pedido(Balconista balconista, Mesa mesa, Date data) {
+        this.balconista = balconista;
+        this.mesa = mesa;
+        this.data = data;
+    }
+    
     public Pedido(Balconista balconista, Mesa mesa, boolean pago, Date data, Set itemPedidos) {
        this.balconista = balconista;
        this.mesa = mesa;

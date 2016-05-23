@@ -25,6 +25,12 @@ public class ItemPedido  implements java.io.Serializable {
        this.qtd = qtd;
        this.data = data;
     }
+    
+    public ItemPedido(Item item, int qtd, Date data) {
+       this.item = item;
+       this.qtd = qtd;
+       this.data = data;
+    }
    
     public Integer getId() {
         return this.id;
@@ -62,7 +68,9 @@ public class ItemPedido  implements java.io.Serializable {
         this.data = data;
     }
 
-
+    public String toString(){
+        return "Item:"+item+" Quantidade:"+qtd+" Data:"+data;
+    }
 
 
 }

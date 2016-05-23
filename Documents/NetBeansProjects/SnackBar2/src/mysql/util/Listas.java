@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.Vector;
 import mysql.entity.Balconista;
 import mysql.entity.Item;
+import mysql.entity.Mesa;
+import mysql.entity.Pedido;
 import mysql.entity.Tipoitem;
 import mysql.entity.Tipousuario;
 import org.hibernate.Query;
@@ -44,13 +46,58 @@ public class Listas {
         return tipoItem;
     }
     
+    
+    public Vector<Item> vectorItem(){
+        Vector<Item> item = new Vector<Item>();
+        for(Item aux: listaItem())
+            item.add(aux);
+        return item;
+    }
+    
+    public Vector<Item> vectorItems(Tipoitem tI){
+        Vector<Item> itens = new Vector<Item>();  
+        for(Item i:listaItem()){
+            if(i.getTipoitem().getId()==tI.getId()){
+                itens.add(i);
+            }
+        } 
+        return itens;
+    }
+    
     public Vector<Tipousuario> vectorTipoUsuario(){
         Vector<Tipousuario> tipoUsuario = new Vector<Tipousuario>();
         for(Tipousuario aux: listaTipoUsuario())
-            tipoUsuario.add(aux);
+         tipoUsuario.add(aux);
         return tipoUsuario;
     }
+    
+    public Vector<Mesa> vectorMesasLivres(){
+        Vector<Mesa> mesas = new Vector<Mesa>();
+        for(Mesa aux: listaMesas())
+          if(aux.isMesalivre())
+            mesas.add(aux);
+        return mesas;
+    }
+    
+    public Vector<Mesa> vectorMesasOcupadas(){
+        Vector<Mesa> mesas = new Vector<Mesa>();
+        for(Mesa aux: listaMesas())
+          if(!aux.isMesalivre())  
+            mesas.add(aux);
+        return mesas;
+    }
      
+    
+    public ArrayList<Mesa> listaMesas(){
+        ArrayList<Mesa> mesas = new ArrayList<Mesa>();
+        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        Query query = session.createQuery("from Mesa");
+        mesas = (ArrayList) query.list();
+        session.getTransaction().commit();
+        return mesas;    
+                }
     
     public ArrayList<Tipousuario> listaTipoUsuario(){
         ArrayList<Tipousuario> tipoUsuario = new ArrayList<Tipousuario>();
@@ -85,5 +132,16 @@ public class Listas {
         return item;
     }
     
+    public ArrayList<Pedido> listaPedidos(){
+        ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
+        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        Query query = session.createQuery("from Pedido");
+        pedidos = (ArrayList) query.list();
+        session.getTransaction().commit();
+        session.close();
+        return pedidos;
+    }
     
 }

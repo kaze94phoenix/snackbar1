@@ -9,9 +9,13 @@ package mysql.util;
 import java.awt.List;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 import mysql.entity.Balconista;
 import mysql.entity.Item;
+import mysql.entity.ItemPedido;
+import mysql.entity.Mesa;
+import mysql.entity.Pedido;
 import mysql.entity.Tipoitem;
 import mysql.entity.Tipousuario;
 import org.hibernate.Query;
@@ -55,6 +59,8 @@ public class MetodosCRUD {
         return dtm;
     }
     
+   
+    
     public DefaultTableModel listarItens(){
         DefaultTableModel dtm = new DefaultTableModel();
          dtm.setColumnIdentifiers(new Object[] {"ID","Nome","Preco","Tipo"});
@@ -62,6 +68,27 @@ public class MetodosCRUD {
              dtm.addRow(new Object[]{" "+item.getId(),item.getNome(),item.getPreco(),item.getTipoitem()});
         return dtm;
     }
+    
+    
+    public void salvarPedido(Balconista balconista,Mesa mesa,Date data){
+        Pedido pedido = new Pedido(balconista,mesa,data);
+        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        session.save(pedido);
+        session.getTransaction().commit();
+        session.close();
+    }
+    
+    public void salvarItemPedido(ItemPedido iP){
+        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        session.save(iP);
+        session.getTransaction().commit();
+        session.close();
+    }
+    
     
     public void salvarItem(String name,double preco,Tipoitem tipoItem){
         Item item = new Item();
