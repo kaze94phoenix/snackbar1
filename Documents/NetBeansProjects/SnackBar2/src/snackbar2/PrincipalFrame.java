@@ -1,3 +1,5 @@
+package snackbar2;
+
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -5,6 +7,7 @@ import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import mysql.entity.Balconista;
 import mysql.entity.Item;
 import mysql.entity.ItemPedido;
 import mysql.entity.Mesa;
@@ -26,10 +29,23 @@ import mysql.util.MetodosCRUD;
 public class PrincipalFrame extends javax.swing.JFrame {
     MetodosCRUD mcrud = new MetodosCRUD();
     Listas listas = new Listas();
+     public ArrayList<ItemPedido> itensPedidos = new ArrayList<ItemPedido>();
+    private Pedido pedido;
+     public DefaultTableModel listaPedidos(){
+    DefaultTableModel iP = new DefaultTableModel();
+    iP.setColumnIdentifiers(new Object[] {"Item","Quantidade"});
+         for(ItemPedido item:itensPedidos)
+             iP.addRow(new Object[]{" "+item.getItem(),item.getQtd()});
+         return iP;
+    }
+    private static Balconista user = new Balconista(); 
+    
+    
     /**
      * Creates new form NewJFrame
      */
-    public PrincipalFrame() {
+    public PrincipalFrame(Balconista user) {
+        this.user=user;
         initComponents();
     }
 
@@ -449,7 +465,7 @@ public class PrincipalFrame extends javax.swing.JFrame {
         System.out.println(itensPedidos); //Teste
         Mesa mesa = (Mesa) mesaLivreCB.getSelectedItem();
         mesa.setMesalivre(false); // ?? Necessita de funcao para actualizar mesas livres e ocupadas, na funcao de salvar pedido
-        mcrud.salvarPedido(listas.listaBalconista().get(0), mesa, new Date()); //Criar Pedido
+        mcrud.salvarPedido(user, mesa, new Date()); //Criar Pedido
         for(ItemPedido iP: itensPedidos){
         iP.setPedido(listas.listaPedidos().get(listas.listaPedidos().size()-1)); //Adicionar itens ao ultimo pedido gravado
         mcrud.salvarItemPedido(iP); //Gravar itens de um pedido
@@ -524,22 +540,14 @@ public class PrincipalFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PrincipalFrame().setVisible(true);
+                new PrincipalFrame(user).setVisible(true);
             }
         });
     }
-    public ArrayList<ItemPedido> itensPedidos = new ArrayList<ItemPedido>();
-    private Pedido pedido;
+   
     
     //lista de pedidos na tabela
-    public DefaultTableModel listaPedidos(){
-    DefaultTableModel iP = new DefaultTableModel();
-    iP.setColumnIdentifiers(new Object[] {"Item","Quantidade"});
-         for(ItemPedido item:itensPedidos)
-             iP.addRow(new Object[]{" "+item.getItem(),item.getQtd()});
-         return iP;
-    }
-    
+   
     //Criar lista de itens de pedidos, associar a um pedido guardado na base de dados apos confirmar pedido
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

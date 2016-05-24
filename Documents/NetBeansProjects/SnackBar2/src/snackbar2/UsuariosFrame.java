@@ -1,3 +1,5 @@
+package snackbar2;
+
 
 import java.awt.HeadlessException;
 import javax.swing.JButton;
