@@ -70,11 +70,12 @@ public class PrincipalFrame extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         mesaLivreCB = new javax.swing.JComboBox();
-        confirmarBT = new javax.swing.JButton();
+        confirmarMLBT = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         mesaOcupadaCB = new javax.swing.JComboBox();
         desfazerBT = new javax.swing.JButton();
+        confirmarMOBT = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         pedidosTB = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
@@ -84,9 +85,9 @@ public class PrincipalFrame extends javax.swing.JFrame {
         jComboBox4 = new javax.swing.JComboBox();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        itensPagamentoTB = new javax.swing.JTable();
         jPanel9 = new javax.swing.JPanel();
-        jComboBox5 = new javax.swing.JComboBox();
+        mesasPagamentoCB = new javax.swing.JComboBox();
         jTextField4 = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
@@ -100,6 +101,11 @@ public class PrincipalFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         itemsCB.setModel(new javax.swing.DefaultComboBoxModel(listas.vectorItem()));
+        itemsCB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemsCBActionPerformed(evt);
+            }
+        });
 
         adicionarBT.setText("Adicionar");
         adicionarBT.addActionListener(new java.awt.event.ActionListener() {
@@ -164,10 +170,10 @@ public class PrincipalFrame extends javax.swing.JFrame {
             }
         });
 
-        confirmarBT.setText("Confirmar");
-        confirmarBT.addActionListener(new java.awt.event.ActionListener() {
+        confirmarMLBT.setText("Confirmar");
+        confirmarMLBT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                confirmarBTActionPerformed(evt);
+                confirmarMLBTActionPerformed(evt);
             }
         });
 
@@ -184,6 +190,8 @@ public class PrincipalFrame extends javax.swing.JFrame {
             }
         });
 
+        confirmarMOBT.setText("Confirmar");
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
@@ -191,17 +199,21 @@ public class PrincipalFrame extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(mesaLivreCB, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 301, Short.MAX_VALUE)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addComponent(mesaOcupadaCB, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(confirmarMLBT)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(confirmarMOBT))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(mesaLivreCB, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 301, Short.MAX_VALUE)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(mesaOcupadaCB, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(45, 45, 45))
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(146, 146, 146)
-                .addComponent(confirmarBT)
-                .addGap(90, 90, 90)
+                .addGap(229, 229, 229)
                 .addComponent(desfazerBT)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -218,10 +230,12 @@ public class PrincipalFrame extends javax.swing.JFrame {
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(mesaLivreCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(confirmarBT)
-                    .addComponent(desfazerBT))
+                    .addComponent(confirmarMLBT)
+                    .addComponent(confirmarMOBT))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(desfazerBT)
                 .addGap(29, 29, 29))
         );
 
@@ -245,7 +259,7 @@ public class PrincipalFrame extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -308,23 +322,13 @@ public class PrincipalFrame extends javax.swing.JFrame {
 
         jTabbedPane6.addTab("Listar de Pedidos", jPanel2);
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane3.setViewportView(jTable3);
+        itensPagamentoTB.setModel(mcrud.itensMesa(listas.listaMesas().get(0)));
+        jScrollPane3.setViewportView(itensPagamentoTB);
 
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox5.addActionListener(new java.awt.event.ActionListener() {
+        mesasPagamentoCB.setModel(new javax.swing.DefaultComboBoxModel(listas.vectorMesasLivres()));
+        mesasPagamentoCB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox5ActionPerformed(evt);
+                mesasPagamentoCBActionPerformed(evt);
             }
         });
 
@@ -334,14 +338,14 @@ public class PrincipalFrame extends javax.swing.JFrame {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(mesasPagamentoCB, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(27, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(mesasPagamentoCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
@@ -458,7 +462,7 @@ public class PrincipalFrame extends javax.swing.JFrame {
         
     }//GEN-LAST:event_adicionarBTActionPerformed
 
-    private void confirmarBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarBTActionPerformed
+    private void confirmarMLBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarMLBTActionPerformed
         // TODO add your handling code here:
         try{
             
@@ -475,11 +479,16 @@ public class PrincipalFrame extends javax.swing.JFrame {
         }catch(Exception e){
             JOptionPane.showMessageDialog(null,e.getMessage());
         }
-    }//GEN-LAST:event_confirmarBTActionPerformed
+    }//GEN-LAST:event_confirmarMLBTActionPerformed
 
-    private void jComboBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox5ActionPerformed
+    private void mesasPagamentoCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mesasPagamentoCBActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox5ActionPerformed
+        try{
+        itensPagamentoTB.setModel(mcrud.itensMesa((Mesa) mesasPagamentoCB.getSelectedItem()));
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(rootPane, e.getMessage());
+        }
+    }//GEN-LAST:event_mesasPagamentoCBActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
@@ -509,6 +518,10 @@ public class PrincipalFrame extends javax.swing.JFrame {
         itensPedidos.clear();
         pedidosTB.setModel(listaPedidos());
     }//GEN-LAST:event_desfazerBTActionPerformed
+
+    private void itemsCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemsCBActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_itemsCBActionPerformed
 
     /**
      * @param args the command line arguments
@@ -552,13 +565,14 @@ public class PrincipalFrame extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton adicionarBT;
-    private javax.swing.JButton confirmarBT;
+    private javax.swing.JButton confirmarMLBT;
+    private javax.swing.JButton confirmarMOBT;
     private javax.swing.JButton desfazerBT;
     private javax.swing.Box.Filler filler1;
     private javax.swing.JComboBox itemsCB;
+    private javax.swing.JTable itensPagamentoTB;
     private javax.swing.JButton jButton5;
     private javax.swing.JComboBox jComboBox4;
-    private javax.swing.JComboBox jComboBox5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -581,11 +595,11 @@ public class PrincipalFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane6;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JComboBox mesaLivreCB;
     private javax.swing.JComboBox mesaOcupadaCB;
+    private javax.swing.JComboBox mesasPagamentoCB;
     private javax.swing.JTable pedidosTB;
     private javax.swing.JTextField qtdTF;
     private javax.swing.JComboBox tipoItemCB;

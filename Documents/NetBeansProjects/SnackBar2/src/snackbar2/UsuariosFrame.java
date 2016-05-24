@@ -218,8 +218,8 @@ public class UsuariosFrame extends javax.swing.JFrame {
     private void guardarBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarBtActionPerformed
         // TODO add your handling code here:
         try{
-        mcrud.salvarUsuario(nomeTF.getText(), usernameTF.getText(), passwordTF.getText(),dataNascDC.getDate(),Integer.parseInt(nuitTF.getText()),moradaTF.getText(),(Tipousuario)usuarioTipoCB.getSelectedItem());
-        
+        mcrud.salvarUsuario(nomeTF.getText(), usernameTF.getText(), passwordTF.getText(),dataNascDC.getDate(),Integer.parseInt(nuitTF.getText()),moradaTF.getText(),(Tipousuario)usuarioTipoCB.getSelectedItem());    
+        //System.out.println(mcrud.listarUsuario().getDataVector());
         usuariosTB.setModel(mcrud.listarUsuario());
         //usuariosTB.getModel().addTableModelListener(usuariosTB);
         //DefaultTableModel dtm = (DefaultTableModel) usuariosTB.getModel();

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Vector;
 import mysql.entity.Balconista;
 import mysql.entity.Item;
+import mysql.entity.ItemPedido;
 import mysql.entity.Mesa;
 import mysql.entity.Pedido;
 import mysql.entity.Tipoitem;
@@ -36,6 +37,7 @@ public class Listas {
         Query query = session.createQuery("from Balconista");
         balconistas = (ArrayList) query.list();
         session.getTransaction().commit();
+        session.close();
         return balconistas;
     }
     
@@ -96,6 +98,7 @@ public class Listas {
         Query query = session.createQuery("from Mesa");
         mesas = (ArrayList) query.list();
         session.getTransaction().commit();
+        session.close();
         return mesas;    
                 }
     
@@ -107,6 +110,7 @@ public class Listas {
         Query query = session.createQuery("from Tipousuario");
         tipoUsuario = (ArrayList) query.list();
         session.getTransaction().commit();
+        session.close();
         return tipoUsuario;
     }
     
@@ -118,6 +122,7 @@ public class Listas {
         Query query = session.createQuery("from Tipoitem");
         tipoItem = (ArrayList) query.list();
         session.getTransaction().commit();
+        session.close();
         return tipoItem;
     }
     
@@ -129,6 +134,7 @@ public class Listas {
         Query query = session.createQuery("from Item");
         item = (ArrayList) query.list();
         session.getTransaction().commit();
+        session.close();
         return item;
     }
     
@@ -142,6 +148,18 @@ public class Listas {
         session.getTransaction().commit();
         session.close();
         return pedidos;
+    }
+    
+    public ArrayList<ItemPedido> listaItensPedidos(){
+        ArrayList<ItemPedido> itensPedidos = new ArrayList<ItemPedido>();
+        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        Query query = session.createQuery("from ItemPedido");
+        itensPedidos = (ArrayList) query.list();
+        session.getTransaction().commit();
+        //session.close();
+        return itensPedidos;
     }
     
 }

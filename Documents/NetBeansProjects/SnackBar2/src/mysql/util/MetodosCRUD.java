@@ -49,6 +49,7 @@ public class MetodosCRUD {
         session.beginTransaction();
         session.save(balconista);
         session.getTransaction().commit();
+        session.close();
     }
     
     public DefaultTableModel listarUsuario(){
@@ -100,6 +101,23 @@ public class MetodosCRUD {
         session.beginTransaction();
         session.save(item);
         session.getTransaction().commit();
+        session.close();
+    }
+    
+    //Devolvera lista de itens que estao numa determinada mesa
+    public DefaultTableModel itensMesa(Mesa mesa){
+        ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
+        ArrayList<ItemPedido> itensPedidos = new ArrayList<ItemPedido>();
+        DefaultTableModel dtm = new DefaultTableModel();
+        dtm.setColumnIdentifiers(new Object[] {"Item","Quantidade","Preco Unitario","Preco Total"});
+        for(Pedido p:listas.listaPedidos()) //Pedidos existentes
+            if(p.getMesa().getId()==mesa.getId()) //Filtrar pedidos de uma determinada mesa
+                pedidos.add(p);
+        for(ItemPedido iP: listas.listaItensPedidos()) //Recuperar itens dos pedidos filtrados
+            for(Pedido p:pedidos)
+                if(iP.getPedido().getId()==p.getId()) //Compor dados da tabela
+                     dtm.addRow(new Object[]{" "+iP.getItem().getNome(),iP.getQtd(),iP.getItem().getPreco(),(iP.getQtd()*iP.getItem().getPreco())});
+        return dtm;
     }
     
 }

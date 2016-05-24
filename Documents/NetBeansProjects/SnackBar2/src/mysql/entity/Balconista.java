@@ -1,5 +1,5 @@
 package mysql.entity;
-// Generated May 3, 2016 11:41:31 AM by Hibernate Tools 3.6.0
+// Generated May 24, 2016 4:04:14 PM by Hibernate Tools 3.6.0
 
 
 import java.util.Date;
@@ -20,21 +20,23 @@ public class Balconista  implements java.io.Serializable {
      private int nuit;
      private String username;
      private String password;
+     private boolean activo;
      private Set pedidos = new HashSet(0);
 
     public Balconista() {
     }
 
 	
-    public Balconista(Tipousuario tipousuario, String nome, Date dataNascimento, int nuit, String username, String password) {
+    public Balconista(Tipousuario tipousuario, String nome, Date dataNascimento, int nuit, String username, String password, boolean activo) {
         this.tipousuario = tipousuario;
         this.nome = nome;
         this.dataNascimento = dataNascimento;
         this.nuit = nuit;
         this.username = username;
         this.password = password;
+        this.activo = activo;
     }
-    public Balconista(Tipousuario tipousuario, String nome, Date dataNascimento, String morada, int nuit, String username, String password, Set pedidos) {
+    public Balconista(Tipousuario tipousuario, String nome, Date dataNascimento, String morada, int nuit, String username, String password, boolean activo, Set pedidos) {
        this.tipousuario = tipousuario;
        this.nome = nome;
        this.dataNascimento = dataNascimento;
@@ -42,6 +44,7 @@ public class Balconista  implements java.io.Serializable {
        this.nuit = nuit;
        this.username = username;
        this.password = password;
+       this.activo = activo;
        this.pedidos = pedidos;
     }
    
@@ -100,6 +103,13 @@ public class Balconista  implements java.io.Serializable {
     
     public void setPassword(String password) {
         this.password = password;
+    }
+    public boolean isActivo() {
+        return this.activo;
+    }
+    
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
     public Set getPedidos() {
         return this.pedidos;

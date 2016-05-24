@@ -1,5 +1,5 @@
 package mysql.entity;
-// Generated May 3, 2016 11:41:31 AM by Hibernate Tools 3.6.0
+// Generated May 24, 2016 4:04:14 PM by Hibernate Tools 3.6.0
 
 
 import java.util.HashSet;
@@ -14,19 +14,22 @@ public class Mesa  implements java.io.Serializable {
      private Integer id;
      private int numero;
      private boolean mesalivre;
+     private boolean activa;
      private Set pedidos = new HashSet(0);
 
     public Mesa() {
     }
 
 	
-    public Mesa(int numero, boolean mesalivre) {
+    public Mesa(int numero, boolean mesalivre, boolean activa) {
         this.numero = numero;
         this.mesalivre = mesalivre;
+        this.activa = activa;
     }
-    public Mesa(int numero, boolean mesalivre, Set pedidos) {
+    public Mesa(int numero, boolean mesalivre, boolean activa, Set pedidos) {
        this.numero = numero;
        this.mesalivre = mesalivre;
+       this.activa = activa;
        this.pedidos = pedidos;
     }
    
@@ -51,6 +54,13 @@ public class Mesa  implements java.io.Serializable {
     public void setMesalivre(boolean mesalivre) {
         this.mesalivre = mesalivre;
     }
+    public boolean isActiva() {
+        return this.activa;
+    }
+    
+    public void setActiva(boolean activa) {
+        this.activa = activa;
+    }
     public Set getPedidos() {
         return this.pedidos;
     }
@@ -62,6 +72,7 @@ public class Mesa  implements java.io.Serializable {
     public String toString(){
         return "Mesa "+numero;
     }
+
 
 
 }

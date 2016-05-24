@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 23-Maio-2016 às 18:56
+-- Generation Time: 24-Maio-2016 às 16:21
 -- Versão do servidor: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -35,17 +35,20 @@ CREATE TABLE IF NOT EXISTS `balconista` (
   `username` varchar(16) NOT NULL,
   `password` varchar(255) NOT NULL,
   `tipousuario_id` int(11) NOT NULL,
+  `activo` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `tipouruario_id` (`tipousuario_id`),
   KEY `tipouruario_id_2` (`tipousuario_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Extraindo dados da tabela `balconista`
 --
 
-INSERT INTO `balconista` (`id`, `nome`, `data_nascimento`, `morada`, `nuit`, `username`, `password`, `tipousuario_id`) VALUES
-(1, 'Celso', '2016-05-05', 'MAgoanine', 554646, 'user1', 'password1', 1);
+INSERT INTO `balconista` (`id`, `nome`, `data_nascimento`, `morada`, `nuit`, `username`, `password`, `tipousuario_id`, `activo`) VALUES
+(1, 'Celso', '2016-05-05', 'MAgoanine', 554646, 'user1', 'password1', 1, 1),
+(2, 'Osvaldo', '2016-05-05', 'Polana cimento', 546468, 'user2', 'password2', 1, 1),
+(8, 'Frenque', '2016-05-11', 'asdasd', 5464, 'user3', 'password3', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -85,15 +88,7 @@ CREATE TABLE IF NOT EXISTS `item_pedido` (
   PRIMARY KEY (`id`),
   KEY `item_id` (`item_id`,`pedido_id`),
   KEY `pedido_id` (`pedido_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
-
---
--- Extraindo dados da tabela `item_pedido`
---
-
-INSERT INTO `item_pedido` (`id`, `item_id`, `qtd`, `pedido_id`, `data`) VALUES
-(1, 1, 4, 2, '2016-05-23 18:02:04'),
-(2, 1, 9, 2, '2016-05-23 18:02:07');
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -105,6 +100,7 @@ CREATE TABLE IF NOT EXISTS `mesa` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `numero` int(11) NOT NULL,
   `mesalivre` tinyint(1) NOT NULL,
+  `activa` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
@@ -112,11 +108,11 @@ CREATE TABLE IF NOT EXISTS `mesa` (
 -- Extraindo dados da tabela `mesa`
 --
 
-INSERT INTO `mesa` (`id`, `numero`, `mesalivre`) VALUES
-(1, 1, 0),
-(2, 2, 0),
-(3, 4, 0),
-(4, 5, 0);
+INSERT INTO `mesa` (`id`, `numero`, `mesalivre`, `activa`) VALUES
+(1, 1, 1, 1),
+(2, 2, 1, 1),
+(3, 3, 1, 1),
+(4, 4, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -134,15 +130,7 @@ CREATE TABLE IF NOT EXISTS `pedido` (
   KEY `balconista` (`balconista_id`,`mesa_id`),
   KEY `balconista_id` (`balconista_id`),
   KEY `mesa_id` (`mesa_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
-
---
--- Extraindo dados da tabela `pedido`
---
-
-INSERT INTO `pedido` (`id`, `balconista_id`, `mesa_id`, `pago`, `data`) VALUES
-(1, 1, 1, 0, '2016-05-23 17:57:41'),
-(2, 1, 1, 0, '2016-05-23 18:02:08');
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -193,7 +181,7 @@ INSERT INTO `tipousuario` (`id`, `designacao`) VALUES
 -- Limitadores para a tabela `balconista`
 --
 ALTER TABLE `balconista`
-  ADD CONSTRAINT `balconista_ibfk_1` FOREIGN KEY (`tipousuario_id`) REFERENCES `tipousuario` (`id`);
+  ADD CONSTRAINT `balconista_ibfk_1` FOREIGN KEY (`tipousuario_id`) REFERENCES `tipousuario` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Limitadores para a tabela `item`
