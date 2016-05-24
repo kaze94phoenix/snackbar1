@@ -88,11 +88,11 @@ public class PrincipalFrame extends javax.swing.JFrame {
         itensPagamentoTB = new javax.swing.JTable();
         jPanel9 = new javax.swing.JPanel();
         mesasPagamentoCB = new javax.swing.JComboBox();
-        jTextField4 = new javax.swing.JTextField();
-        jButton5 = new javax.swing.JButton();
+        valorPagarTF = new javax.swing.JTextField();
+        pagarBT = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        trocosTF = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -349,22 +349,24 @@ public class PrincipalFrame extends javax.swing.JFrame {
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        valorPagarTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                valorPagarTFActionPerformed(evt);
             }
         });
 
-        jButton5.setText("Pagar");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        pagarBT.setText("Pagar");
+        pagarBT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                pagarBTActionPerformed(evt);
             }
         });
 
         jLabel4.setText("Valor");
 
         jLabel5.setText("Trocos");
+
+        trocosTF.setEditable(false);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -386,10 +388,10 @@ public class PrincipalFrame extends javax.swing.JFrame {
                             .addComponent(jLabel5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField4)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE))
+                            .addComponent(valorPagarTF)
+                            .addComponent(trocosTF, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
-                        .addComponent(jButton5)
+                        .addComponent(pagarBT)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -402,13 +404,13 @@ public class PrincipalFrame extends javax.swing.JFrame {
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5)
+                    .addComponent(valorPagarTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pagarBT)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(trocosTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22))
         );
 
@@ -485,18 +487,33 @@ public class PrincipalFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         try{
         itensPagamentoTB.setModel(mcrud.itensMesa((Mesa) mesasPagamentoCB.getSelectedItem()));
+        mcrud.total=0.0;
+        itensPagamentoTB.setModel(mcrud.itensMesa((Mesa) mesasPagamentoCB.getSelectedItem()));
         }catch(Exception e){
             JOptionPane.showMessageDialog(rootPane, e.getMessage());
         }
     }//GEN-LAST:event_mesasPagamentoCBActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void pagarBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pagarBTActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+        try{
+         Double valorPagar = Double.parseDouble(valorPagarTF.getText());
+         if(valorPagar<mcrud.total) //Comparar se o valor entregue é igual ou superior ao valor a ser pago
+             JOptionPane.showMessageDialog(rootPane, "Valor Insuficiente");
+         else{
+         trocosTF.setText(String.valueOf(valorPagar-mcrud.total)); //Trocos do valor entregue pra effectuar o pagamento
+         mcrud.pagarPedido((Mesa) mesasPagamentoCB.getSelectedItem()); //Metodo para confirmar o pagamento dos pedidos de uma mesa
+         itensPagamentoTB.setModel(mcrud.itensMesa((Mesa) mesasPagamentoCB.getSelectedItem())); //Actualizar a lista de pedidos numa mesa
+         }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(rootPane, e.getMessage());
+        }
+       
+    }//GEN-LAST:event_pagarBTActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void valorPagarTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valorPagarTFActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_valorPagarTFActionPerformed
 
     private void mesaLivreCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mesaLivreCBActionPerformed
         // TODO add your handling code here:
@@ -571,7 +588,6 @@ public class PrincipalFrame extends javax.swing.JFrame {
     private javax.swing.Box.Filler filler1;
     private javax.swing.JComboBox itemsCB;
     private javax.swing.JTable itensPagamentoTB;
-    private javax.swing.JButton jButton5;
     private javax.swing.JComboBox jComboBox4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
@@ -595,13 +611,14 @@ public class PrincipalFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane6;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JComboBox mesaLivreCB;
     private javax.swing.JComboBox mesaOcupadaCB;
     private javax.swing.JComboBox mesasPagamentoCB;
+    private javax.swing.JButton pagarBT;
     private javax.swing.JTable pedidosTB;
     private javax.swing.JTextField qtdTF;
     private javax.swing.JComboBox tipoItemCB;
+    private javax.swing.JTextField trocosTF;
+    private javax.swing.JTextField valorPagarTF;
     // End of variables declaration//GEN-END:variables
 }

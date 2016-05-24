@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 24-Maio-2016 às 16:21
+-- Generation Time: 24-Maio-2016 às 19:45
 -- Versão do servidor: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -88,7 +88,7 @@ CREATE TABLE IF NOT EXISTS `item_pedido` (
   PRIMARY KEY (`id`),
   KEY `item_id` (`item_id`,`pedido_id`),
   KEY `pedido_id` (`pedido_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 -- --------------------------------------------------------
 
@@ -130,7 +130,7 @@ CREATE TABLE IF NOT EXISTS `pedido` (
   KEY `balconista` (`balconista_id`,`mesa_id`),
   KEY `balconista_id` (`balconista_id`),
   KEY `mesa_id` (`mesa_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 -- --------------------------------------------------------
 

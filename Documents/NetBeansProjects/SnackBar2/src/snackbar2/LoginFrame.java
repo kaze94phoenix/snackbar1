@@ -124,8 +124,10 @@ public class LoginFrame extends javax.swing.JFrame {
                 if(b.getUsername().equals(nomeUsuarioTF.getText()) && b.getPassword().equals(senhaPF.getText())){
                     new PrincipalFrame(b).setVisible(true);
                     setVisible(false);
+                    return;
                 }else{
                     JOptionPane.showMessageDialog(rootPane, "Nome de Usuario ou Senha Incorrectos", "Erro", JOptionPane.WARNING_MESSAGE);
+                    return;
                 }
         }catch(Exception e){
             JOptionPane.showMessageDialog(rootPane, e.getMessage());

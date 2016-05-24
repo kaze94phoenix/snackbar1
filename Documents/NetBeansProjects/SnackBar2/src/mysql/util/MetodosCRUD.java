@@ -30,7 +30,7 @@ import org.hibernate.cfg.Configuration;
 public class MetodosCRUD {
     
     Listas listas = new Listas();
-    
+    public static Double total=0.0;
     public MetodosCRUD(){
         
     }
@@ -111,13 +111,33 @@ public class MetodosCRUD {
         DefaultTableModel dtm = new DefaultTableModel();
         dtm.setColumnIdentifiers(new Object[] {"Item","Quantidade","Preco Unitario","Preco Total"});
         for(Pedido p:listas.listaPedidos()) //Pedidos existentes
-            if(p.getMesa().getId()==mesa.getId()) //Filtrar pedidos de uma determinada mesa
+            if(p.getMesa().getId()==mesa.getId()&& !p.isPago()) //Filtrar pedidos de uma determinada mesa
                 pedidos.add(p);
+        
         for(ItemPedido iP: listas.listaItensPedidos()) //Recuperar itens dos pedidos filtrados
             for(Pedido p:pedidos)
-                if(iP.getPedido().getId()==p.getId()) //Compor dados da tabela
+                if(iP.getPedido().getId()==p.getId()){ //Compor dados da tabela
                      dtm.addRow(new Object[]{" "+iP.getItem().getNome(),iP.getQtd(),iP.getItem().getPreco(),(iP.getQtd()*iP.getItem().getPreco())});
+                     total+=iP.getQtd()*iP.getItem().getPreco();
+                     }
+        dtm.addRow(new Object[] {"","","",""});
+        dtm.addRow(new Object[] {"Total","","",total});
         return dtm;
     }
+    
+    public void pagarPedido(Mesa mesa){
+        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        for(Pedido p: listas.listaPedidos())
+            if(p.getMesa().getId()==mesa.getId()){
+                Pedido pedido = (Pedido) session.get(Pedido.class, p.getId());
+                pedido.setPago(true);
+                session.update(pedido);
+            }
+        session.getTransaction().commit();
+        session.close();
+    }
+    
     
 }
