@@ -130,11 +130,13 @@ public class MetodosCRUD {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         for(Pedido p: listas.listaPedidos())
-            if(p.getMesa().getId()==mesa.getId()){
+            if(p.getMesa().getId()==mesa.getId() && !p.isPago()){
                 Pedido pedido = (Pedido) session.get(Pedido.class, p.getId());
                 pedido.setPago(true);
+                pedido.setData(new Date());
                 session.update(pedido);
             }
+        
         session.getTransaction().commit();
         session.close();
     }
