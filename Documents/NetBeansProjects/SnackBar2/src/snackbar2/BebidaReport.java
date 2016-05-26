@@ -6,6 +6,7 @@
 package snackbar2;
 
 import java.awt.Color;
+import mysql.util.Listas;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
 import org.jfree.chart.JFreeChart;
@@ -18,7 +19,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
  * @author OsvaldoMaria
  */
 public class BebidaReport extends javax.swing.JFrame {
-
+    Listas listas = new Listas();
     /**
      * Creates new form Bebidas
      */

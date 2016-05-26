@@ -45,7 +45,7 @@ public class ItensFrame extends javax.swing.JFrame {
         GuardarBt = new javax.swing.JButton();
         LimparBt = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        itensTB = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -116,8 +116,8 @@ public class ItensFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTable1.setModel(mcrud.listarItens());
-        jScrollPane1.setViewportView(jTable1);
+        itensTB.setModel(mcrud.listarItens());
+        jScrollPane1.setViewportView(itensTB);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -195,12 +195,12 @@ public class ItensFrame extends javax.swing.JFrame {
     private javax.swing.JButton GuardarBt;
     private javax.swing.JButton LimparBt;
     private javax.swing.JComboBox itensCB;
+    private javax.swing.JTable itensTB;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField nomeTF;
     private javax.swing.JTextField precoTF;
     // End of variables declaration//GEN-END:variables

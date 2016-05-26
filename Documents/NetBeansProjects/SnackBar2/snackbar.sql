@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 24-Maio-2016 às 19:45
+-- Generation Time: 26-Maio-2016 às 12:44
 -- Versão do servidor: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -64,14 +64,20 @@ CREATE TABLE IF NOT EXISTS `item` (
   PRIMARY KEY (`id`),
   KEY `tipoitem_id` (`tipoitem_id`),
   KEY `tipoitem_id_2` (`tipoitem_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Extraindo dados da tabela `item`
 --
 
 INSERT INTO `item` (`id`, `nome`, `preco`, `tipoitem_id`) VALUES
-(1, 'Refresco', 70, 2);
+(1, 'Refresco', 70, 2),
+(2, 'Amarula', 230, 1),
+(3, 'Heineken', 50, 1),
+(4, 'Dose de Frango', 140, 3),
+(5, 'Xima', 50, 3),
+(6, 'Salada de Tomate', 60, 3),
+(7, 'Sumo Ceres', 60, 2);
 
 -- --------------------------------------------------------
 
@@ -88,7 +94,19 @@ CREATE TABLE IF NOT EXISTS `item_pedido` (
   PRIMARY KEY (`id`),
   KEY `item_id` (`item_id`,`pedido_id`),
   KEY `pedido_id` (`pedido_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+
+--
+-- Extraindo dados da tabela `item_pedido`
+--
+
+INSERT INTO `item_pedido` (`id`, `item_id`, `qtd`, `pedido_id`, `data`) VALUES
+(3, 1, 5, 3, '2016-05-24 20:54:59'),
+(4, 1, 4, 4, '2016-05-25 20:57:02'),
+(5, 1, 5, 5, '2016-05-24 21:09:37'),
+(6, 1, 5, 6, '2016-05-26 11:34:10'),
+(7, 1, 4, 6, '2016-05-26 11:34:16'),
+(8, 1, 66, 6, '2016-05-26 11:34:20');
 
 -- --------------------------------------------------------
 
@@ -130,7 +148,17 @@ CREATE TABLE IF NOT EXISTS `pedido` (
   KEY `balconista` (`balconista_id`,`mesa_id`),
   KEY `balconista_id` (`balconista_id`),
   KEY `mesa_id` (`mesa_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+
+--
+-- Extraindo dados da tabela `pedido`
+--
+
+INSERT INTO `pedido` (`id`, `balconista_id`, `mesa_id`, `pago`, `data`) VALUES
+(3, 1, 1, 1, '2016-05-25 20:57:16'),
+(4, 1, 1, 1, '2016-05-25 20:57:16'),
+(5, 1, 1, 1, '2016-05-24 21:09:53'),
+(6, 1, 1, 1, '2016-05-26 11:34:41');
 
 -- --------------------------------------------------------
 
