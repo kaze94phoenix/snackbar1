@@ -432,6 +432,11 @@ public class Reports extends javax.swing.JFrame {
             }
         });
     }
+    
+    @Override
+    public void setDefaultCloseOperation(int operation) {
+        super.setDefaultCloseOperation(DISPOSE_ON_CLOSE); //To change body of generated methods, choose Tools | Templates.
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

@@ -6,6 +6,7 @@
 package snackbar2;
 
 import java.awt.Color;
+import java.util.Date;
 import mysql.util.Listas;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
@@ -211,7 +212,7 @@ public class BebidaReport extends javax.swing.JFrame {
         //se seleccionar semana
         if(jComboBox1.getSelectedIndex()==1){
             for (int i = 0; i < 7; i++) {
-                dataset.setValue(50+i, "Quantidade" ,dias_semana[i]);
+                dataset.setValue(listas.nrBebidasVendidosSemana(i), "Quantidade" ,dias_semana[i]);
 
             }
             x="semana";
@@ -219,8 +220,8 @@ public class BebidaReport extends javax.swing.JFrame {
         }
         //se seleccionar mes
         else if(jComboBox1.getSelectedIndex()==2){
-            for (int i = 0; i < 31; i++) {
-                dataset.setValue(50 + i, "Quantidade", dias[i]);
+            for (int i = 0; i < listas.nrDaysOfMonth(new Date()); i++) {
+                dataset.setValue(listas.nrBebidasVendidosMes(i), "Quantidade", i);
 
             }
             x="diss";
@@ -287,6 +288,11 @@ public class BebidaReport extends javax.swing.JFrame {
                 new BebidaReport().setVisible(true);
             }
         });
+    }
+    
+    @Override
+    public void setDefaultCloseOperation(int operation) {
+        super.setDefaultCloseOperation(DISPOSE_ON_CLOSE); //To change body of generated methods, choose Tools | Templates.
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
