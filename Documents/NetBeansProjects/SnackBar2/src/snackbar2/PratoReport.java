@@ -6,6 +6,7 @@
 package snackbar2;
 
 import java.awt.Color;
+import mysql.util.Listas;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
 import org.jfree.chart.JFreeChart;
@@ -18,7 +19,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
  * @author OsvaldoMaria
  */
 public class PratoReport extends javax.swing.JFrame {
-
+    Listas listas = new Listas();
     /**
      * Creates new form Pratos
      */
@@ -212,7 +213,7 @@ public class PratoReport extends javax.swing.JFrame {
         //se seleccionar semana
         if(jComboBox1.getSelectedIndex()==1){
                     for (int i = 0; i < 7; i++) {
-           dataset.setValue(50+i, "Quantidade" ,dias_semana[i]);
+           dataset.setValue(listas.nrPedidosVendidosSemana(i), "Quantidade" ,dias_semana[i]);
            
             
         }

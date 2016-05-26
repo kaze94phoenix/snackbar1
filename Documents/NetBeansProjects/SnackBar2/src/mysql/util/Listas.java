@@ -7,6 +7,8 @@
 package mysql.util;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Vector;
 import mysql.entity.Balconista;
 import mysql.entity.Item;
@@ -160,6 +162,44 @@ public class Listas {
         session.getTransaction().commit();
         //session.close();
         return itensPedidos;
+    }
+    
+    public int nrPedidosVendidosSemana(int diaSemana){
+        int nrPedidos=0;
+        Calendar cal1 = Calendar.getInstance();
+        Calendar cal2 = Calendar.getInstance();
+//        cal1.setTime(date1);
+//        cal2.setTime(date2);
+        boolean sameDay = cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) &&
+                  cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR);
+        
+        Date refDate = new Date();
+        Date[] days = getDaysOfWeek(refDate, Calendar.getInstance().getFirstDayOfWeek());
+        ArrayList<ItemPedido> pedidos = listaItensPedidos();
+        
+        for(ItemPedido p:pedidos)
+            if(p.getPedido().isPago()){
+            cal1.setTime(p.getPedido().getData());
+            cal2.setTime(days[diaSemana]);
+            if(cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) && cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR))
+                nrPedidos++;
+        }
+        System.out.println(days[diaSemana]+" "+nrPedidos+" pedidos feitos");
+        //nrPedidos=0;
+        
+        return nrPedidos;
+    }
+    
+    private static Date[] getDaysOfWeek(Date refDate, int firstDayOfWeek) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(refDate);
+        calendar.set(Calendar.DAY_OF_WEEK, firstDayOfWeek);
+        Date[] daysOfWeek = new Date[7];
+        for (int i = 0; i < 7; i++) {
+            daysOfWeek[i] = calendar.getTime();
+            calendar.add(Calendar.DAY_OF_MONTH, 1);
+        }
+        return daysOfWeek;
     }
     
 }
