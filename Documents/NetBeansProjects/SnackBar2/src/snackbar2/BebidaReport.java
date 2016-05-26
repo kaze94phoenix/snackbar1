@@ -221,7 +221,7 @@ public class BebidaReport extends javax.swing.JFrame {
         //se seleccionar mes
         else if(jComboBox1.getSelectedIndex()==2){
             for (int i = 0; i < listas.nrDaysOfMonth(new Date()); i++) {
-                dataset.setValue(listas.nrBebidasVendidosMes(i), "Quantidade", i);
+                dataset.setValue(listas.nrBebidasVendidosMes(i), "Quantidade", i+1);
 
             }
             x="diss";
